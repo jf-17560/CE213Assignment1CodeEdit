@@ -46,57 +46,112 @@ class Board {
         return (hasXWon() || hasOWon() || getAvailablePoints().isEmpty());
     }
 
-    public int heuristicMethod(List<PointsAndScores> list)
+    public double heuristicMethodRow()
 
     {
-        int score=0;
+        double scores=0;
 
         for (int i = 0; i < size; ++i)
         {
-            int x=0,o=0,n=0;
+            ArrayList Line = new ArrayList();
             for (int j = 0; j < size; ++j)
             {
 
                 if (board[i][j]==1)
                 {
                     //X
-                    x+=10;
+                    Line.add(1);
                 }
 
                 else if (board[i][j]==2)
                 {
-                    o-=10;
+                    Line.add(2);
                 }
 
-                else
-                {
-                    n=0;
-                }
-            }
-            if (x==50)
-            {
-                //Full off X
-            }
-            if (o==50)
-            {
-                //Full off O
-            }
-            if (n==50)
-            {
 
             }
-            if (x<50)
+            if (Line.contains(1)&&(!Line.contains(2)))
             {
-                //Nothing
+                scores = scores + Math.pow(10,Line.size());
             }
-            if (o<50)
-            {}
-
+            if (!(Line.contains(1))&&(Line.contains(2)))
+            {
+                scores = scores - Math.pow(10,Line.size());
             }
 
 
-            return score;
+        }
+
+
+            return scores;
     }
+
+
+    public double heuristicMethodCol()
+
+    {
+        double scores=0;
+
+        for (int i = 0; i < size; ++i)
+        {
+            ArrayList Line = new ArrayList();
+            for (int j = 0; j < size; ++j)
+            {
+
+                if (board[j][i]==1)
+                {
+                    //X
+                    Line.add(1);
+                }
+
+                else if (board[j][i]==2)
+                {
+                    Line.add(2);
+                }
+
+
+            }
+            if (Line.contains(1)&&(!Line.contains(2)))
+            {
+                scores = scores + Math.pow(10,Line.size());
+            }
+            if (!(Line.contains(1))&&(Line.contains(2)))
+            {
+                scores = scores - Math.pow(10,Line.size());
+            }
+
+
+        }
+
+
+        return scores;
+    }
+
+    public double heuristicMethodDiag()
+
+    {
+        double scores=0;
+        ArrayList Line = new ArrayList();
+        for 
+
+
+
+            if (Line.contains(1)&&(!Line.contains(2)))
+            {
+                scores = scores + Math.pow(10,Line.size());
+            }
+            if (!(Line.contains(1))&&(Line.contains(2)))
+            {
+                scores = scores - Math.pow(10,Line.size());
+            }
+
+
+        }
+
+
+        return scores;
+    }
+
 
     public boolean hasXWon() {
         if ((   board[0][0] == board[1][1] &&
