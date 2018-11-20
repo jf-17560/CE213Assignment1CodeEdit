@@ -72,7 +72,13 @@ class AIplayer {
         if (b.hasOWon()) return -1;
         List<Point> pointsAvailable = b.getAvailablePoints();
         if (pointsAvailable.isEmpty()) return 0;
-        if (depth>4){b.heuristicMethod();}
+
+        if (depth>4)
+        {
+
+            b.heuristicMethodCol();
+        }
+
         List<Integer> scores = new ArrayList<>();
 
         for (int i = 0; i < pointsAvailable.size(); ++i) {

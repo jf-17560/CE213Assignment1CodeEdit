@@ -46,45 +46,6 @@ class Board {
         return (hasXWon() || hasOWon() || getAvailablePoints().isEmpty());
     }
 
-    public double heuristicMethodRow()
-
-    {
-        double scores=0;
-
-        for (int i = 0; i < size; ++i)
-        {
-            ArrayList Line = new ArrayList();
-            for (int j = 0; j < size; ++j)
-            {
-
-                if (board[i][j]==1)
-                {
-                    //X
-                    Line.add(1);
-                }
-
-                else if (board[i][j]==2)
-                {
-                    Line.add(2);
-                }
-
-
-            }
-            if (Line.contains(1)&&(!Line.contains(2)))
-            {
-                scores = scores + Math.pow(10,Line.size());
-            }
-            if (!(Line.contains(1))&&(Line.contains(2)))
-            {
-                scores = scores - Math.pow(10,Line.size());
-            }
-
-
-        }
-
-
-            return scores;
-    }
 
 
     public double heuristicMethodCol()
@@ -98,6 +59,39 @@ class Board {
             for (int j = 0; j < size; ++j)
             {
 
+                //Diagonal left to right
+                if (board[i][i]==1)
+                {
+                    Line.add(1);
+                }
+                else if(board[i][i]==2)
+                {
+                    Line.add(2);
+                }
+
+                //Diagonal right to left
+                if (board[4-i][4-i]==1)
+                {
+                    Line.add(1);
+                }
+                else if(board[4-i][4-i]==2)
+                {
+                    Line.add(2);
+                }
+
+
+                //rows
+                if (board[i][j]==1)
+                {
+                    Line.add(1);
+                }
+                else if (board[j][i]==2)
+                {
+                    Line.add(2);
+                }
+
+
+                //column
                 if (board[j][i]==1)
                 {
                     //X
@@ -132,10 +126,50 @@ class Board {
     {
         double scores=0;
         ArrayList Line = new ArrayList();
-        for 
 
 
 
+
+            if (Line.contains(1)&&(!Line.contains(2)))
+            {
+                scores = scores + Math.pow(10,Line.size());
+            }
+            if (!(Line.contains(1))&&(Line.contains(2)))
+            {
+                scores = scores - Math.pow(10,Line.size());
+            }
+
+
+
+
+
+        return scores;
+    }
+
+    public double heuristicMethodRow()
+
+    {
+        double scores=0;
+
+        for (int i = 0; i < size; ++i)
+        {
+            ArrayList Line = new ArrayList();
+            for (int j = 0; j < size; ++j)
+            {
+
+                if (board[i][j]==1)
+                {
+                    //X
+                    Line.add(1);
+                }
+
+                else if (board[i][j]==2)
+                {
+                    Line.add(2);
+                }
+
+
+            }
             if (Line.contains(1)&&(!Line.contains(2)))
             {
                 scores = scores + Math.pow(10,Line.size());
