@@ -32,7 +32,7 @@ class PointsAndScores
 }
 
 class Board { 
-
+    int size =5;
     List<Point> availablePoints;
     Scanner scan = new Scanner(System.in);
     int[][] board = new int[5][5];
@@ -46,6 +46,58 @@ class Board {
         return (hasXWon() || hasOWon() || getAvailablePoints().isEmpty());
     }
 
+    public int heuristicMethod(List<PointsAndScores> list)
+
+    {
+        int score=0;
+
+        for (int i = 0; i < size; ++i)
+        {
+            int x=0,o=0,n=0;
+            for (int j = 0; j < size; ++j)
+            {
+
+                if (board[i][j]==1)
+                {
+                    //X
+                    x+=10;
+                }
+
+                else if (board[i][j]==2)
+                {
+                    o-=10;
+                }
+
+                else
+                {
+                    n=0;
+                }
+            }
+            if (x==50)
+            {
+                //Full off X
+            }
+            if (o==50)
+            {
+                //Full off O
+            }
+            if (n==50)
+            {
+
+            }
+            if (x<50)
+            {
+                //Nothing
+            }
+            if (o<50)
+            {}
+
+            }
+
+
+            return score;
+    }
+
     public boolean hasXWon() {
         if ((   board[0][0] == board[1][1] &&
                 board[0][0] == board[2][2] &&
@@ -54,6 +106,7 @@ class Board {
                 board[0][0] == 1)
 
                 ||
+
                 (board[0][4] == board[1][3] &&
                 board[0][4] == board[2][2] &&
                 board[0][4] == board[3][1] &&
@@ -63,7 +116,7 @@ class Board {
             return true;
         }
 
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < size; ++i) {
             if (((
                     //
                     board[i][0] == board[i][1] &&
@@ -103,7 +156,7 @@ class Board {
         {
              return true;
         }
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < size; ++i)
         {
         if    (((board[i][0] == board[i][1]) && (board[i][0] == board[i][2]) && (board[i][0] == board[i][3]) && (board[i][0] == board[i][4]) && (board[i][0] == 2)) ||
                     ((board[0][i] == board[1][i]) && (board[0][i] == board[2][i]) && (board[0][i] == board[3][i]) && (board[0][i] == board[4][i]) && (board[0][i] == 2)))
@@ -116,8 +169,8 @@ class Board {
 
     public List<Point> getAvailablePoints() {
         availablePoints = new ArrayList<>();
-        for (int i = 0; i < 5; ++i) {
-            for (int j = 0; j < 5; ++j) {
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
                 if (board[i][j] == 0) {
                     availablePoints.add(new Point(i, j));
                 }
@@ -138,8 +191,8 @@ class Board {
     public void displayBoard() {
         System.out.println();
 
-        for (int i = 0; i < 5; ++i) {
-            for (int j = 0; j < 5; ++j) {
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
  		if (board[i][j]==1)           
                     System.out.print("X ");
                 else if (board[i][j]==2)
